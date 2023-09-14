@@ -18,7 +18,7 @@ inline int SDL_GetWindowRefreshRate(SDL_Window *Window){
     return Mode.refresh_rate;
 }
 
-Simulation::Simulation() : Columns(1920), Rows(1080), CellDimension(1){
+Simulation::Simulation() : Columns(1280), Rows(720), CellDimension(1){
 	WindowWidth = Columns * CellDimension;
 	WindowHeight = Rows * CellDimension;
 	SDL_Init(SDL_INIT_VIDEO);
@@ -197,7 +197,7 @@ void Simulation::Cycle(){
 		SDL_UpdateWindowSurface(Window);
 		double IterationEnd = SDL_GetPerformanceCounter();
 		double ElapsedSeconds = (IterationEnd-IterationStart) / (double)SDL_GetPerformanceFrequency();
-		double Delay =  (1000.0f/(double)FPS) - (ElapsedSeconds*1000.0f);
+		double Delay =  (1000.0/(double)FPS) - (ElapsedSeconds*1000.0);
 		if(Delay > 0)
 			SDL_Delay(std::max(0, (int)round(Delay)));
 	}
